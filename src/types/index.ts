@@ -30,13 +30,11 @@ export interface ExecuteCodeResponse {
     stderr: string;
   };
 }
-
 export interface ExecutionResult {
   code: string;
   output: string;
   error: string | null;
 }
-
 export interface CodeEditorState {
   language: string;
   output: string;
