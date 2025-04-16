@@ -12,7 +12,7 @@ import FeatureItem from './_components/FeatureItem';
 import UpgradeButton from './_components/UpgradeButton';
 import LoginButton from '@/components/LoginButton';
 
-const page = async () => {
+const Page = async () => {
     const user = await currentUser();
     const convex = new ConvexHttpClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
 
@@ -138,4 +138,4 @@ const page = async () => {
     )
 }
 
-export default page
+export default Page

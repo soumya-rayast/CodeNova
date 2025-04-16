@@ -28,7 +28,7 @@ const TABS = [
     },
   ];
 
-const pages = () => {
+const Page = () => {
     const { user, isLoaded } = useUser();
     const router = useRouter();
     const [activeTab, setActiveTab] = useState<"executions" | "starred">("executions");
@@ -289,4 +289,4 @@ const pages = () => {
     )
 }
 
-export default pages
+export default Page

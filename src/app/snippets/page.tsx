@@ -9,7 +9,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { BookOpen, Grid, Layers, Search, Tag, X } from 'lucide-react';
 import SnippetCard from './_components/SnippetCard';
 
-const page = () => {
+const Page = () => {
     const snippets = useQuery(api.snippets.getSnippets);
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedLanguage, setSelectedLanguage] = useState<string | null>(null)
@@ -174,4 +174,4 @@ const page = () => {
     )
 }
 
-export default page
+export default Page

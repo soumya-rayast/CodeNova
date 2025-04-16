@@ -8,7 +8,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useClerk } from '@clerk/nextjs';
 import useMounted from '@/hooks/useMounted';
-import { EditorPanelSkeleton } from './EdoitorPanelSkeleton';
+import { EditorPanelSkeleton } from './EditorPanelSkeleton';
 import ShareSnippetDialog from './ShareSnippetDialog';
 
 const EditorPanel = () => {
@@ -20,7 +20,7 @@ const EditorPanel = () => {
   useEffect(() => {
     const savedCode = localStorage.getItem(`editor-code-${language}`)
     const newCode = savedCode || LANGUAGE_CONFIG[language].defaultCode
-    if (editor) editor.setValue(newCode)
+    // if (editor) { editor?.setValue(newCode) }
   }, [language, editor]);
 
   useEffect(() => {
@@ -30,9 +30,9 @@ const EditorPanel = () => {
 
   const handleRefresh = () => {
     const defaultCode = LANGUAGE_CONFIG[language].defaultCode;
-    if (editor) editor.setValue(defaultCode);
-    localStorage.removeItem(`editor-code-${language}`)
-  }
+    // if (editor) editor?.setValue(defaultCode);
+    localStorage.removeItem(`editor-code-${language}`);
+  };
   const handleEditorChange = (value: string | undefined) => {
     if (value) localStorage.setItem(`editor-code-${language}`, value);
   }
@@ -110,7 +110,7 @@ const EditorPanel = () => {
               onChange={handleEditorChange}
               theme={theme}
               beforeMount={defineMonacoThemes}
-              onMount={(editor) => setEditor(editor)}
+              onMount={(editorInstance) => setEditor(editorInstance)}
               options={{
                 minimap: { enabled: false },
                 fontSize,

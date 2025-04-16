@@ -8,13 +8,12 @@ import { Id } from '../../../../convex/_generated/dataModel';
 import SnippetLoadingSkeleton from './_components/SnippetLoadingSkeleton';
 import NavigationHeader from '@/components/NavigationHeader';
 import { Clock, Code, MessageSquare, User } from 'lucide-react';
-import Image from 'next/image';
 import { Editor } from '@monaco-editor/react';
 import { defineMonacoThemes, LANGUAGE_CONFIG } from '@/app/(root)/_constant';
 import CopyButton from './_components/CopyButton';
 import Comments from './_components/Comments';
 
-const page = () => {
+const Page = () => {
   const snippetId = useParams().id;
   const snippet = useQuery(api.snippets.getSnippetById, { snippetId: snippetId as Id<'snippets'> })
   const comments = useQuery(api.snippets.getComments, { snippetId: snippetId as Id<'snippets'> })
@@ -95,4 +94,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page
