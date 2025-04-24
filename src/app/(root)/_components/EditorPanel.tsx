@@ -2,7 +2,7 @@
 import { useCodeEditorStore } from '@/app/store/useCodeEditorStore';
 import React, { useEffect, useState } from 'react'
 import { defineMonacoThemes, LANGUAGE_CONFIG } from '../_constant';
-import { Editor } from '@monaco-editor/react';
+import Editor from '@monaco-editor/react';
 import { RotateCcwIcon, ShareIcon, TypeIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
@@ -14,26 +14,26 @@ import ShareSnippetDialog from './ShareSnippetDialog';
 const EditorPanel = () => {
   const clerk = useClerk();
   const [isShareDialogOpen, setIsShareDialogOpen] = useState(false)
-  const { language, theme, fontSize, editor, setFontSize, setEditor } = useCodeEditorStore();
+  const { language, theme, fontSize, editor, setFontSize } = useCodeEditorStore();
   const mounted = useMounted();
 
-  // useEffect(() => {
-  //   if (typeof window !== 'undefined' && editor) {
-  //     const savedCode = localStorage.getItem(`editor-code-${language}`);
-  //     const newCode = savedCode || LANGUAGE_CONFIG[language].defaultCode;
-  //     editor.setValue(newCode);
-  //   }
-  // }, [language, editor]);
+  useEffect(() => {
+    if (typeof window !== 'undefined' && editor) {
+      const savedCode = localStorage.getItem(`editor-code-${language}`);
+      const newCode = savedCode || LANGUAGE_CONFIG[language].defaultCode;
+      editor.setValue(newCode);
+    }
+  }, [language, editor]);
   
-  
+
   useEffect(() => {
     const savedFontSize = localStorage.getItem("editor-font-size");
     if (savedFontSize) setFontSize(parseInt(savedFontSize));
   }, [setFontSize]);
 
   const handleRefresh = () => {
-    // const defaultCode = LANGUAGE_CONFIG[language].defaultCode;
-    // if (editor) editor.setValue(defaultCode);
+    const defaultCode = LANGUAGE_CONFIG[language].defaultCode;
+    if (editor) editor.setValue(defaultCode);
     localStorage.removeItem(`editor-code-${language}`);
   };
 
@@ -109,11 +109,14 @@ const EditorPanel = () => {
           {clerk.loaded && (
             <Editor
               height="600px"
-              language={LANGUAGE_CONFIG[language].monacoLanguage}
+              language={language}
               onChange={handleEditorChange}
+              value={LANGUAGE_CONFIG[language].defaultCode}
               theme={theme}
               beforeMount={defineMonacoThemes}
-              onMount={(editor) => setEditor(editor)}
+              onMount={(editorInstance) => {
+                useCodeEditorStore.getState().setEditor(editorInstance);
+              }}
               options={{
                 minimap: { enabled: false },
                 fontSize,

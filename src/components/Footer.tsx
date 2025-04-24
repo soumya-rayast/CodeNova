@@ -1,4 +1,4 @@
-import { Blocks } from 'lucide-react';
+import {Code } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react';
 
@@ -9,7 +9,7 @@ const Footer = () => {
                 <div className="flex flex-col md:flex-row items-center justify-between gap-8">
                     {/* Left Section - Logo and Slogan */}
                     <div className="flex items-center gap-2 text-gray-300">
-                        <Blocks className="w-6 h-6 text-cyan-500" />
+                        <Code className="w-6 h-6 text-cyan-500" />
                         <span className="font-semibold text-white">CodeNova</span>
                         <span>— Built for developers, be developer</span>
                     </div>

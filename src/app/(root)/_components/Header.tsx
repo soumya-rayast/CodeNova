@@ -3,7 +3,7 @@ import { ConvexHttpClient } from 'convex/browser';
 import React from 'react'
 import { api } from '../../../../convex/_generated/api';
 import Link from 'next/link';
-import { Blocks, Code2, Sparkles } from 'lucide-react';
+import { Code2, Code2Icon, Sparkles } from 'lucide-react';
 import { SignedIn } from '@clerk/nextjs';
 import ThemeSelector from './ThemeSelector';
 import LanguageSelector from './LanguageSelector';
@@ -26,7 +26,7 @@ const Header = async () => {
                         <div className="absolute -inset-2 bg-gradient-to-r from-cyan-500/20 to-cyan-400/20 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl" />
 
                         <div className="relative bg-gradient-to-r from-cyan-400 via-cyan-300 to-cyan-500 p-2 rounded-xl ring-1 ring-white/10 group-hover:ring-white/20 transition-all">
-                            <Blocks className="w-6 h-6 text-blue-950 transform -rotate-6 group-hover:rotate-0 transition-transform duration-500" />
+                            <Code2Icon className="w-6 h-6 text-blue-950 transform -rotate-6 group-hover:rotate-0 transition-transform duration-500" />
                         </div>
 
                         <div className="flex flex-col">
